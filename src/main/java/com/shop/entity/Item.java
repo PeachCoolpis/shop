@@ -18,7 +18,7 @@ public class Item {
     
     private Integer price;
     @Column(name = "STOCK_QUANTITY")
-    private Integer stockquantity;
+    private Integer stockQuantity;
     
     private String dtype;
     
@@ -33,4 +33,16 @@ public class Item {
     private String director;
     
     private String actor;
+    
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+    
+    public void removeStock(int quantity) {
+        boolean stock = this.stockQuantity - quantity < 0;
+        if(stock) {
+            throw new IllegalArgumentException("need more stock");
+        }
+        this.stockQuantity -= quantity;
+    }
 }
